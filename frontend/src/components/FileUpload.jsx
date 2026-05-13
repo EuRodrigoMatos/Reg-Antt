@@ -48,23 +48,20 @@ export default function FileUpload({ setResultado, setErro, carregando, setCarre
 
   return (
     <div className="card">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-        <FileText size={20} className="text-orange-500" />
-        Análise de Nota Fiscal
-      </h2>
-
       <div
         className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
-          dragOver ? 'border-orange-400 bg-orange-50' : 'border-gray-300 hover:border-orange-300 hover:bg-orange-50'
+          dragOver
+            ? 'border-primary-400 bg-primary-50'
+            : 'border-dark-200 hover:border-primary-400 hover:bg-primary-50'
         }`}
         onDragOver={e => { e.preventDefault(); setDragOver(true) }}
         onDragLeave={() => setDragOver(false)}
         onDrop={onDrop}
         onClick={() => inputRef.current?.click()}
       >
-        <Upload className="mx-auto mb-3 text-gray-400" size={36} />
-        <p className="font-medium text-gray-700">Arraste o arquivo aqui ou clique para selecionar</p>
-        <p className="text-sm text-gray-500 mt-1">NF-e XML ou PDF — máx. 20 MB</p>
+        <Upload className="mx-auto mb-3 text-dark-200" size={36} />
+        <p className="font-semibold text-dark-800">Arraste o arquivo aqui ou clique para selecionar</p>
+        <p className="text-sm text-dark-700/60 mt-1">NF-e XML ou PDF — máx. 20 MB</p>
         <input
           ref={inputRef}
           type="file"
@@ -75,11 +72,11 @@ export default function FileUpload({ setResultado, setErro, carregando, setCarre
       </div>
 
       {arquivo && (
-        <div className="mt-4 flex items-center gap-3 bg-gray-50 rounded-lg p-3">
-          <FileText size={18} className="text-orange-500 shrink-0" />
-          <span className="text-sm font-medium text-gray-700 flex-1">{arquivo.name}</span>
-          <span className="text-xs text-gray-400">{(arquivo.size / 1024).toFixed(0)} KB</span>
-          <button onClick={() => setArquivo(null)} className="text-gray-400 hover:text-red-500">
+        <div className="mt-4 flex items-center gap-3 bg-dark-50 border border-dark-200 rounded-lg p-3">
+          <FileText size={18} className="text-primary-500 shrink-0" />
+          <span className="text-sm font-semibold text-dark-800 flex-1">{arquivo.name}</span>
+          <span className="text-xs text-dark-700/50">{(arquivo.size / 1024).toFixed(0)} KB</span>
+          <button onClick={() => setArquivo(null)} className="text-dark-200 hover:text-red-500 transition-colors">
             <X size={16} />
           </button>
         </div>
@@ -88,7 +85,8 @@ export default function FileUpload({ setResultado, setErro, carregando, setCarre
       <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg flex gap-2">
         <AlertCircle size={16} className="text-blue-500 mt-0.5 shrink-0" />
         <p className="text-xs text-blue-700">
-          Para XML: a extração é automática e precisa. Para PDF: o texto é extraído automaticamente, mas confirme os produtos identificados, pois PDFs possuem layouts variáveis.
+          Para XML: a extração é automática e precisa. Para PDF: o texto é extraído automaticamente,
+          mas confirme os produtos identificados, pois PDFs possuem layouts variáveis.
         </p>
       </div>
 

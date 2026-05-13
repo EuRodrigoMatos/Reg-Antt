@@ -14,7 +14,9 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
   }
 
   function updateItem(i, campo, valor) {
-    setItens(prev => prev.map((item, idx) => idx === i ? { ...item, [campo]: valor, produto: campo === 'onu' ? null : item.produto } : item))
+    setItens(prev => prev.map((item, idx) =>
+      idx === i ? { ...item, [campo]: valor, produto: campo === 'onu' ? null : item.produto } : item
+    ))
   }
 
   async function buscarONU(i) {
@@ -60,17 +62,13 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
 
   return (
     <div className="card">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-        <PlayCircle size={20} className="text-orange-500" />
-        Simulação de Composição de Carga
-      </h2>
-      <p className="text-sm text-gray-500 mb-4">
+      <p className="text-sm text-dark-700/70 mb-4">
         Adicione todos os produtos perigosos que serão transportados juntos para verificar compatibilidade e requisitos.
       </p>
 
       <div className="space-y-3">
         {itens.map((item, i) => (
-          <div key={i} className="border border-gray-200 rounded-xl p-4 bg-gray-50">
+          <div key={i} className="border border-dark-200 rounded-lg p-4 bg-dark-50">
             <div className="flex gap-2 items-start">
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <div className="flex gap-1">
@@ -81,12 +79,13 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                     onKeyDown={e => e.key === 'Enter' && buscarONU(i)}
                     placeholder="ONU (ex: 1202)"
                     maxLength={4}
-                    className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 font-mono"
+                    className="flex-1 bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm font-mono
+                               focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                   />
                   <button
                     onClick={() => buscarONU(i)}
                     disabled={!item.onu || item.buscando}
-                    className="px-2 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg transition-colors disabled:opacity-40"
+                    className="px-2.5 py-2 bg-primary-100 hover:bg-primary-200 text-primary-700 rounded-lg transition-colors disabled:opacity-40"
                     title="Buscar ONU"
                   >
                     <Search size={16} />
@@ -99,12 +98,14 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                   placeholder="Quantidade"
                   min="0"
                   step="0.01"
-                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  className="bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm
+                             focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                 />
                 <select
                   value={item.unidade}
                   onChange={e => updateItem(i, 'unidade', e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 bg-white"
+                  className="bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm
+                             focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                 >
                   <option value="L">L (Litros)</option>
                   <option value="KG">KG (Quilos)</option>
@@ -114,7 +115,10 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                 </select>
               </div>
               {itens.length > 1 && (
-                <button onClick={() => removeItem(i)} className="text-red-400 hover:text-red-600 mt-1 p-1">
+                <button
+                  onClick={() => removeItem(i)}
+                  className="text-dark-200 hover:text-red-500 mt-1 p-1 transition-colors"
+                >
                   <Trash2 size={18} />
                 </button>
               )}
@@ -125,17 +129,19 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                 <span className="font-mono bg-orange-100 text-orange-700 px-2 py-0.5 rounded font-bold">
                   ONU {item.produto.onu}
                 </span>
-                <span className="text-gray-700 font-medium">{item.produto.nomeOficial}</span>
-                <span className="text-gray-500">· Classe {item.produto.classe} · NR: {item.produto.numeroRisco}</span>
+                <span className="text-dark-800 font-semibold">{item.produto.nomeOficial}</span>
+                <span className="text-dark-700/60">· Classe {item.produto.classe} · NR: {item.produto.numeroRisco}</span>
               </div>
             )}
 
             {item.buscando && (
-              <p className="text-xs text-gray-400 mt-1">Buscando ONU {item.onu}...</p>
+              <p className="text-xs text-dark-700/50 mt-1">Buscando ONU {item.onu}...</p>
             )}
 
             {!item.produto && item.onu && !item.buscando && (
-              <p className="text-xs text-yellow-600 mt-1">Clique em <Search size={10} className="inline" /> para validar o ONU</p>
+              <p className="text-xs text-yellow-600 mt-1">
+                Clique em <Search size={10} className="inline" /> para validar o ONU
+              </p>
             )}
           </div>
         ))}
@@ -144,7 +150,7 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
       <div className="flex gap-2 mt-4">
         <button
           onClick={addItem}
-          className="flex items-center gap-2 text-sm text-orange-600 hover:text-orange-800 border border-orange-300 hover:border-orange-500 px-4 py-2 rounded-lg transition-colors"
+          className="flex items-center gap-2 text-sm text-primary-600 hover:text-primary-800 border border-primary-300 hover:border-primary-500 hover:bg-primary-50 px-4 py-2.5 rounded-lg transition-colors font-semibold"
         >
           <Plus size={16} />
           Adicionar Produto
