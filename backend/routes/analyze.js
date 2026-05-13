@@ -4,12 +4,17 @@ const multer = require('multer');
 const { parseNFe } = require('../services/xmlParser');
 const { parsePDF } = require('../services/pdfParser');
 const { analisarCarga } = require('../services/rulesEngine');
-const db = require('../data/produtos-perigosos.json');
+const fs = require('fs');
+const path = require('path');
+
+function getDb() {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '../data/produtos-perigosos.json'), 'utf8'));
+}
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
 
 function buscarProdutoPorONU(onu) {
-  return db.produtos.find(p => p.onu === onu);
+  return getDb().produtos.find(p => p.onu === onu);
 }
 
 function normalizar(str) {
@@ -23,7 +28,7 @@ function matchProduto(nomeProduto, ncm) {
   let melhor = null;
   let melhorScore = 0;
 
-  for (const p of db.produtos) {
+  for (const p of getDb().produtos) {
     let score = 0;
     const nomeNorm = normalizar(p.nomeOficial);
     const altsNorm = (p.nomesAlternativos || []).map(normalizar);

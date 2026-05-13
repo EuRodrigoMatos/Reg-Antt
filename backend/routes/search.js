@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../data/produtos-perigosos.json');
+const fs = require('fs');
+const path = require('path');
+
+function getDb() {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '../data/produtos-perigosos.json'), 'utf8'));
+}
 
 function normalizar(str) {
   return (str || '')
@@ -48,7 +53,7 @@ function calcularScore(produto, termoBusca) {
 
 router.get('/onu/:numero', (req, res) => {
   const numero = req.params.numero.replace(/\D/g, '');
-  const produto = db.produtos.find(p => p.onu === numero);
+  const produto = getDb().produtos.find(p => p.onu === numero);
   if (!produto) return res.status(404).json({ erro: `ONU ${numero} não encontrado na base de dados.` });
   res.json(produto);
 });
@@ -60,7 +65,7 @@ router.get('/nome', (req, res) => {
     return res.status(400).json({ erro: 'Informe ao menos um parâmetro de busca: q, classe ou categoria.' });
   }
 
-  let resultados = db.produtos;
+  let resultados = getDb().produtos;
 
   if (classe) {
     resultados = resultados.filter(p => p.classe === classe || p.subclasse === classe);
@@ -83,8 +88,9 @@ router.get('/nome', (req, res) => {
 });
 
 router.get('/classes', (req, res) => {
-  const classes = [...new Set(db.produtos.map(p => p.classe))].sort();
-  const categorias = [...new Set(db.produtos.map(p => p.categoria))].sort();
+  const { produtos } = getDb();
+  const classes = [...new Set(produtos.map(p => p.classe))].sort();
+  const categorias = [...new Set(produtos.map(p => p.categoria))].sort();
   res.json({ classes, categorias });
 });
 
@@ -96,7 +102,7 @@ router.post('/match-nfe', (req, res) => {
 
   const resultados = produtos.map(prod => {
     const termo = `${prod.nome} ${prod.ncm || ''}`.trim();
-    const candidatos = db.produtos
+    const candidatos = getDb().produtos
       .map(p => ({ produto: p, score: calcularScore(p, termo) }))
       .filter(r => r.score > 10)
       .sort((a, b) => b.score - a.score)
