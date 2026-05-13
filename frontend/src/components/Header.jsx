@@ -1,13 +1,15 @@
-import { Truck, ShieldAlert } from 'lucide-react'
+import { Truck } from 'lucide-react'
 
 export default function Header() {
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="bg-orange-500 p-2 rounded-lg">
-            <ShieldAlert className="text-white" size={28} />
-          </div>
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+        <div className="flex items-center gap-3">
+          <img
+            src="/logo.png"
+            alt="Pantanal Agrícola"
+            className="h-12 w-12 object-contain rounded-xl"
+          />
           <div>
             <h1 className="text-xl font-bold text-gray-900 leading-tight">
               Sistema ANTT — Produtos Perigosos
