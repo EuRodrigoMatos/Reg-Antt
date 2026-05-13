@@ -1,0 +1,10 @@
+{
+  "name": "reg-antt",
+  "version": "1.0.0",
+  "description": "Sistema de Regulação ANTT - Produtos Perigosos - Pantanal Agrícola",
+  "scripts": {
+    "install:tudo": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "start cmd /k \"cd backend && npm start\" && cd frontend && npm run dev"
+  },
+  "devDependencies": {}
+}
