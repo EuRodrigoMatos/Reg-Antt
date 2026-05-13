@@ -34,7 +34,7 @@ export default function App() {
   const abaAtual = navItems.find(n => n.id === aba)
 
   return (
-    <div className="min-h-screen bg-base flex flex-col">
+    <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header onMenuClick={() => setSidebarOpen(true)} />
 
       <div className="flex flex-1">
@@ -100,7 +100,7 @@ export default function App() {
             {/* Page title */}
             {abaAtual && (
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-dark-900 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                   <abaAtual.icon size={22} className="text-primary-500" />
                   {abaAtual.label}
                 </h2>
@@ -151,7 +151,7 @@ export default function App() {
         </main>
       </div>
 
-      <footer className="text-center text-xs text-dark-700/50 pb-4 pt-3 border-t border-dark-100">
+      <footer className="text-center text-xs text-slate-700/50 pb-4 pt-3 border-t border-slate-100">
         Sistema ANTT — Ref.: Resolução ANTT 5.998/2022 | ABNT NBR 7500/7503/9735 | Lista ONU 2023
       </footer>
     </div>

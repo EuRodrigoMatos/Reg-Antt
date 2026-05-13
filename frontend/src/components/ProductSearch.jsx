@@ -71,7 +71,7 @@ export default function ProductSearch({ setResultado, setErro, carregando, setCa
             className={`flex-1 py-2.5 px-3 rounded-lg text-sm font-semibold border transition-colors ${
               modo === id
                 ? 'bg-primary-600 text-white border-primary-600'
-                : 'bg-white text-dark-700 border-dark-200 hover:border-primary-400 hover:text-primary-600'
+                : 'bg-white text-slate-700 border-slate-200 hover:border-primary-400 hover:text-primary-600'
             }`}
           >
             {label}
@@ -94,21 +94,21 @@ export default function ProductSearch({ setResultado, setErro, carregando, setCa
 
       {sugestoes.length > 0 && (
         <div className="mt-4">
-          <p className="text-sm text-dark-700 mb-2">{sugestoes.length} produto(s) encontrado(s). Selecione:</p>
+          <p className="text-sm text-slate-700 mb-2">{sugestoes.length} produto(s) encontrado(s). Selecione:</p>
           <div className="space-y-2 max-h-64 overflow-y-auto">
             {sugestoes.map(p => (
               <button
                 key={p.onu}
                 onClick={() => selecionarSugestao(p)}
-                className="w-full text-left p-3 border border-dark-200 rounded-lg hover:border-primary-400 hover:bg-primary-50 transition-colors"
+                className="w-full text-left p-3 border border-slate-200 rounded-lg hover:border-primary-400 hover:bg-primary-50 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded font-bold flex-shrink-0">
                     ONU {p.onu}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-dark-900 truncate">{p.nomeOficial}</p>
-                    <p className="text-xs text-dark-700">Classe {p.classe} · {p.categoria}</p>
+                    <p className="text-sm font-semibold text-slate-900 truncate">{p.nomeOficial}</p>
+                    <p className="text-xs text-slate-700">Classe {p.classe} · {p.categoria}</p>
                   </div>
                   <span className={`text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0 ${
                     p.relevancia > 50 ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
@@ -127,14 +127,14 @@ export default function ProductSearch({ setResultado, setErro, carregando, setCa
           <button
             key={onu}
             onClick={() => { setTermo(onu); setModo('onu') }}
-            className="text-xs bg-dark-50 hover:bg-primary-50 hover:text-primary-700 border border-dark-200 hover:border-primary-300 rounded-lg px-3 py-2 transition-colors flex items-center gap-1 text-dark-700"
+            className="text-xs bg-slate-50 hover:bg-primary-50 hover:text-primary-700 border border-slate-200 hover:border-primary-300 rounded-lg px-3 py-2 transition-colors flex items-center gap-1 text-slate-700"
           >
             <Package size={12} />
             ONU {onu}
           </button>
         ))}
       </div>
-      <p className="text-xs text-dark-700/50 mt-1">Atalhos rápidos: produtos mais comuns</p>
+      <p className="text-xs text-slate-700/50 mt-1">Atalhos rápidos: produtos mais comuns</p>
     </div>
   )
 }

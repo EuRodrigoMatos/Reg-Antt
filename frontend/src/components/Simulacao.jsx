@@ -62,13 +62,13 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
 
   return (
     <div className="card">
-      <p className="text-sm text-dark-700/70 mb-4">
+      <p className="text-sm text-slate-700/70 mb-4">
         Adicione todos os produtos perigosos que serão transportados juntos para verificar compatibilidade e requisitos.
       </p>
 
       <div className="space-y-3">
         {itens.map((item, i) => (
-          <div key={i} className="border border-dark-200 rounded-lg p-4 bg-dark-50">
+          <div key={i} className="border border-slate-200 rounded-lg p-4 bg-slate-50">
             <div className="flex gap-2 items-start">
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <div className="flex gap-1">
@@ -79,7 +79,7 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                     onKeyDown={e => e.key === 'Enter' && buscarONU(i)}
                     placeholder="ONU (ex: 1202)"
                     maxLength={4}
-                    className="flex-1 bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm font-mono
+                    className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm font-mono
                                focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                   />
                   <button
@@ -98,13 +98,13 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                   placeholder="Quantidade"
                   min="0"
                   step="0.01"
-                  className="bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm
+                  className="bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm
                              focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                 />
                 <select
                   value={item.unidade}
                   onChange={e => updateItem(i, 'unidade', e.target.value)}
-                  className="bg-white border border-dark-200 rounded-lg px-3 py-2.5 text-sm
+                  className="bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm
                              focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/15 transition-colors"
                 >
                   <option value="L">L (Litros)</option>
@@ -117,7 +117,7 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
               {itens.length > 1 && (
                 <button
                   onClick={() => removeItem(i)}
-                  className="text-dark-200 hover:text-red-500 mt-1 p-1 transition-colors"
+                  className="text-slate-200 hover:text-red-500 mt-1 p-1 transition-colors"
                 >
                   <Trash2 size={18} />
                 </button>
@@ -129,13 +129,13 @@ export default function Simulacao({ setResultado, setErro, carregando, setCarreg
                 <span className="font-mono bg-orange-100 text-orange-700 px-2 py-0.5 rounded font-bold">
                   ONU {item.produto.onu}
                 </span>
-                <span className="text-dark-800 font-semibold">{item.produto.nomeOficial}</span>
-                <span className="text-dark-700/60">· Classe {item.produto.classe} · NR: {item.produto.numeroRisco}</span>
+                <span className="text-slate-800 font-semibold">{item.produto.nomeOficial}</span>
+                <span className="text-slate-700/60">· Classe {item.produto.classe} · NR: {item.produto.numeroRisco}</span>
               </div>
             )}
 
             {item.buscando && (
-              <p className="text-xs text-dark-700/50 mt-1">Buscando ONU {item.onu}...</p>
+              <p className="text-xs text-slate-700/50 mt-1">Buscando ONU {item.onu}...</p>
             )}
 
             {!item.produto && item.onu && !item.buscando && (

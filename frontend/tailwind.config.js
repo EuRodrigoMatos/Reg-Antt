@@ -13,16 +13,7 @@ export default {
           600: '#19324d',
           700: '#10253d',
         },
-        dark: {
-          50:  '#f5f7fa',
-          100: '#e7edf4',
-          200: '#c8d4e2',
-          700: '#27415f',
-          800: '#1c344f',
-          900: '#11263d',
-        },
-        base: '#f3f4f6',
-        card: '#ffffff',
+
         antt: {
           laranja: '#FF6B00',
           laranjaEscuro: '#CC5500',

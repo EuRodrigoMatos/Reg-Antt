@@ -52,16 +52,16 @@ export default function FileUpload({ setResultado, setErro, carregando, setCarre
         className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
           dragOver
             ? 'border-primary-400 bg-primary-50'
-            : 'border-dark-200 hover:border-primary-400 hover:bg-primary-50'
+            : 'border-slate-200 hover:border-primary-400 hover:bg-primary-50'
         }`}
         onDragOver={e => { e.preventDefault(); setDragOver(true) }}
         onDragLeave={() => setDragOver(false)}
         onDrop={onDrop}
         onClick={() => inputRef.current?.click()}
       >
-        <Upload className="mx-auto mb-3 text-dark-200" size={36} />
-        <p className="font-semibold text-dark-800">Arraste o arquivo aqui ou clique para selecionar</p>
-        <p className="text-sm text-dark-700/60 mt-1">NF-e XML ou PDF — máx. 20 MB</p>
+        <Upload className="mx-auto mb-3 text-slate-200" size={36} />
+        <p className="font-semibold text-slate-800">Arraste o arquivo aqui ou clique para selecionar</p>
+        <p className="text-sm text-slate-700/60 mt-1">NF-e XML ou PDF — máx. 20 MB</p>
         <input
           ref={inputRef}
           type="file"
@@ -72,11 +72,11 @@ export default function FileUpload({ setResultado, setErro, carregando, setCarre
       </div>
 
       {arquivo && (
-        <div className="mt-4 flex items-center gap-3 bg-dark-50 border border-dark-200 rounded-lg p-3">
+        <div className="mt-4 flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-lg p-3">
           <FileText size={18} className="text-primary-500 shrink-0" />
-          <span className="text-sm font-semibold text-dark-800 flex-1">{arquivo.name}</span>
-          <span className="text-xs text-dark-700/50">{(arquivo.size / 1024).toFixed(0)} KB</span>
-          <button onClick={() => setArquivo(null)} className="text-dark-200 hover:text-red-500 transition-colors">
+          <span className="text-sm font-semibold text-slate-800 flex-1">{arquivo.name}</span>
+          <span className="text-xs text-slate-700/50">{(arquivo.size / 1024).toFixed(0)} KB</span>
+          <button onClick={() => setArquivo(null)} className="text-slate-200 hover:text-red-500 transition-colors">
             <X size={16} />
           </button>
         </div>
